@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+    
+        .heading {
+            text-align: center;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+
+        <div class = "row" id = "latest_news_header">
+            <div class = "col-md-12">
+                <h2><strong>Latest Mars News</strong></h4>
+                <h4><strong>{{listings.title}}</strong></h6>
+                <p>{{listings.text}}</p>
+            </div>
+        </div>
+
+        <div class = "row" id = "latest_news_graphics">
+            <div class = "col-md-8" id = "featured_image_container">
+                <br>
+                <h3 class = "heading">Featured Image</h4>
+                <img style ="max-width: 100%; height: auto" src = "{{listings.main_image}}" alt = "main_image">
+            </div>
+            <div class = "col-md-4" id = "weather_and_stats">
+                <br>
+                <h3 class = "heading">Weather</h3>
+                <div>
+                    {{listings.weather}}
+                </div>
+                <br>
+                <h4 class = "heading">Mars Facts</h4>
+                {{listings.stat_table|safe}}
+            </div>
+        </div>
+
+        <div class = "container row" id = "hemispheres_container">
+            <div class = "row">
+                <div class = "col-md-12">
+                    <br>
+                    <h3 class = "heading">Mars Hemispheres</h3>
+                </div>
+            </div>
+            <br>
+            <div class = "row">
+                {% for image_title_pair in listings.hemisphere_images %}
+                    <div class = "col-md-6">
+
+                        <h3 class = "heading">{{image_title_pair.title}}</h3>
+                        <br>
+                        <img style ="max-width: 100%; height: auto" src = "{{image_title_pair.image_url}}" alt = "hemisphere_image">
+
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
